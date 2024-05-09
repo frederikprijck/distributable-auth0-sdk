@@ -1,7 +1,7 @@
 import { Context } from '../context';
 
 export interface SDKActions {
-  signIn: (args: {isSilent: boolean}) => Promise<void>;
+  signIn: (args?: {isSilent?: boolean}) => Promise<void>;
   signOut: () => Promise<void>;
 }
 

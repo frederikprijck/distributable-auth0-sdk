@@ -3,11 +3,43 @@
     <head>
         <meta charset="utf-8" />
         <title>Distributable Auth SDK</title>
+        <script src="https://cdn.tailwindcss.com"></script>
         <script src="/sdk.js" type="application/javascript"></script>
     </head>
     <body>
-        <h1>Hello world!</h1>
-        <h2>Tip: Check your console</h2>
+        <div class="flex flex-col gap-2 p-10 h-screen">
+            <div class="flex justify-between">
+                <button class="w-40 text-white p-2 rounded mb-4" id="sign-in">Sign in</button>
+                <h1 class="text-3xl">Distributable Auth SDK</h1>
+            </div>
+        </div>
+        <script type="application/javascript">
+            const btn = document.getElementById('sign-in');
+            btn.className = "bg-blue-600 hover:bg-blue-800 w-40 text-white p-2 rounded mb-4";
+
+            btn.addEventListener("click", () => {
+              if (!window.AccountSDK) {
+                console.error("window.AccountSDK not found");
+              }
+              const isAuthenticated = window.AccountSDK.getState().isAuthenticated;
+              if (isAuthenticated) {
+                window.AccountSDK.actions.signOut();
+              } else {
+                window.AccountSDK.actions.signIn();
+              }
+            })
+
+            // Subscribe to events
+            window.AccountSDK.events.signIn.connect(({isAuthenticated}) => {
+              btn.innerText = isAuthenticated ? "Sign out" : "Sign in";
+              if(isAuthenticated) {
+                btn.className = "bg-red-600 hover:bg-red-800 w-40 text-white p-2 rounded mb-4"
+              }
+            })
+            window.AccountSDK.events.signOut.connect(({success}) => {
+              if (success) btn.innerText = "Sign in";
+            })
+        </script>
     </body>
     
 </html>

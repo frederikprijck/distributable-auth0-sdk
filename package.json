@@ -2,6 +2,7 @@
   "devDependencies": {
     "@webpack-cli/generators": "^3.0.7",
     "css-loader": "^6.10.0",
+    "dotenv": "^16.4.5",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "prettier": "^3.2.5",
     "style-loader": "^3.3.4",
@@ -19,6 +20,9 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "dev": "webpack serve"
+  },
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^2.1.3"
   }
 }
