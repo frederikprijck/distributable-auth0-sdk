@@ -26,3 +26,12 @@ AUTH0_CLIENT_ID=<your application client id>
 ## Step 3: Run the application
 1. `npm install`
 2. `npm run dev`
+
+# Issues with this repository
+Authentication mechanism does not work in the following browsers
+- Safari
+- Firefox
+- Chrome Incognito
+- Brave
+
+Only Chrome browsers without Incognito mode works properly. This is due to string Cross Origin policies in the other browsers.
